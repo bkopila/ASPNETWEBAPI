@@ -1,4 +1,3 @@
-using ProductAPI;
 
 public class Product
 {
