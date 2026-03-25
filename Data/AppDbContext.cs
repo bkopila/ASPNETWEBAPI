@@ -1,5 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-using ProductAPI;
 
 public class AppDbContext : DbContext
 {
