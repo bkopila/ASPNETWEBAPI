@@ -2,6 +2,12 @@ using Microsoft.EntityFrameworkCore;
 
 public class AppDbContext : DbContext
 {
+    //Add constructor to accept DbContextOptions 
+    //This allows configuration to be passed in from Program.cs when registering the DbContext 
+    public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
+    {
+    }
+
     public DbSet<Category> Categories { get; set; }
     public DbSet<Supplier> Suppliers { get; set; }
     public DbSet<Product> Products { get; set; }
@@ -9,12 +15,6 @@ public class AppDbContext : DbContext
     public DbSet<Order> Orders { get; set; }
     public DbSet<OrderItem> OrderItems { get; set; }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        optionsBuilder.UseNpgsql(
-            "Host=localhost;Port=5432;Database=ProductDB;Username=postgres;Password=0000"
-        );
-    }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -60,3 +60,4 @@ public class AppDbContext : DbContext
             .OnDelete(DeleteBehavior.Restrict);
     }
 }
+
